@@ -15,6 +15,7 @@ class CoursesPage extends React.Component{
         this.onTitleChange = this.onTitleChange.bind(this);
         this.onClickSave = this.onClickSave.bind(this);
     }
+    
     onTitleChange(event){
         const course = this.state.course;
         course.title = event.target.value;
@@ -22,7 +23,7 @@ class CoursesPage extends React.Component{
     }
 
     onClickSave(){
-        this.props.dispatch(courseActions.createCourse(this.state.course));
+        this.props.actions.createCourse(this.state.course);
     }
     courseRow(course, index){
         return <div key={index}>{course.title}</div>;
@@ -50,8 +51,8 @@ class CoursesPage extends React.Component{
 }
 
 CoursesPage.propTypes = {
-    actions: PropTypes.object.isRequired,
-    courses: PropTypes.array.isRequired
+    courses: PropTypes.array.isRequired,
+    actions: PropTypes.object.isRequired
 };
 
   
@@ -67,4 +68,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
   
-export default connect(mapStateToProps)(CoursesPage);
+export default connect(mapStateToProps,mapDispatchToProps)(CoursesPage);
