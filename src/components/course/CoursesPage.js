@@ -15,7 +15,7 @@ class CoursesPage extends React.Component{
         this.onTitleChange = this.onTitleChange.bind(this);
         this.onClickSave = this.onClickSave.bind(this);
     }
-    
+
     onTitleChange(event){
         const course = this.state.course;
         course.title = event.target.value;
