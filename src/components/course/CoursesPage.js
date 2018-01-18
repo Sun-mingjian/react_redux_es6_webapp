@@ -25,8 +25,12 @@ class CoursesPage extends React.Component{
     }
 
     onClickSave(){
-        this.props.actions.createCourse(this.state.course);
-        this.setState({course:{title:""}});
+        if(!this.state.course.title){
+            alert("Please input the course title");
+        }else{
+            this.props.actions.createCourse(this.state.course);
+            this.setState({course:{title:""}});
+        }
     }
 
     handleDeleteCourse(index){
