@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as courseActions from '../../actions/courseActions';
+import Course from './Course';
 
 
 class CoursesPage extends React.Component{
@@ -14,6 +15,7 @@ class CoursesPage extends React.Component{
 
         this.onTitleChange = this.onTitleChange.bind(this);
         this.onClickSave = this.onClickSave.bind(this);
+        this.handleDeleteCourse = this.handleDeleteCourse.bind(this);
     }
 
     onTitleChange(event){
@@ -24,16 +26,23 @@ class CoursesPage extends React.Component{
 
     onClickSave(){
         this.props.actions.createCourse(this.state.course);
+        this.setState({course:{title:""}});
     }
-    courseRow(course, index){
-        return <div key={index}>{course.title}</div>;
+
+    handleDeleteCourse(index){
+        if(this.props.actions.deleteCourse){
+            this.props.actions.deleteCourse(index);
+        }
     }
 
     render(){
         return (
             <div>
                 <h1> Courses </h1>
-                {this.props.courses.map(this.courseRow)}
+                {this.props.courses.map((course,i) => 
+                    <Course key={i} thisCourse={course} index={i} onDeleteCourse={this.handleDeleteCourse} />
+                )}
+
                 <h2> Add Courses </h2>
                 <input
                     type="text"
@@ -52,7 +61,9 @@ class CoursesPage extends React.Component{
 
 CoursesPage.propTypes = {
     courses: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired
+    actions: PropTypes.object.isRequired,
+    onDeleteCourse:PropTypes.func,
+    deleteCourse:PropTypes.func
 };
 
   
