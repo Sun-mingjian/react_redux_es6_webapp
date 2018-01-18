@@ -36,14 +36,20 @@ class CoursesPage extends React.Component{
     }
 
     render(){
+        let courseSectionHeader = "";
+        
+        if(this.props.courses.length>0){
+            courseSectionHeader = <h2> Courses To Review</h2>;
+        }
+
         return (
             <div>
-                <h1> Courses </h1>
+                {courseSectionHeader}
                 {this.props.courses.map((course,i) => 
                     <Course key={i} thisCourse={course} index={i} onDeleteCourse={this.handleDeleteCourse} />
                 )}
 
-                <h2> Add Courses </h2>
+                <h2>Please Add Courses</h2>
                 <input
                     type="text"
                     onChange={this.onTitleChange}
