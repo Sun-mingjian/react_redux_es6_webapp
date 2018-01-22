@@ -27,3 +27,10 @@ export const editReview = (review)=>{
         review
     };
 };
+
+export const getCourseReview = (courseName) => {
+    return {
+        type:types.GET_REVIEW,
+        courseName
+    };  
+};

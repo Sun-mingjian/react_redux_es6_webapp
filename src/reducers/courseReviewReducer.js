@@ -1,19 +1,26 @@
 import * as types from '../actions/actionTypes';
 
 let defaultState = {
-    reviewList:[]
+    "aaa":"Hello SMJ"
 };
 
 
-export function courseReviewReducer(state = defaultState, action){
-    const singleReview = {action.course : action.review}
+export default function courseReviewReducer(state = defaultState, action){
     switch(action.type){
+        case types.GET_REVIEW:
+            const courseName = action.courseName;
+            Object.keys(state).forEach(function(course){
+                if(course===courseName){
+                    return {review:state[course]};
+                }
+            });
+           
         case types.ADD_REVIEW:
+            // const singleReview = {action.course : action.review}
             return {
-                reviewList:[...state,
-                Object.assign({},singleReview)
-            ]
-        };
+                reviewList:{}
+            };
+        
             
         case types.EDIT_REVIEW:
             return {

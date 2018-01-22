@@ -10,13 +10,14 @@ class CourseReviewContent extends React.Component{
         return(
             <div>
                 <h1>Course: {this.props.courseName}</h1>
-                <h1>{this.props.courseReviewContent}</h1>
+                <h1>{this.props.reviewContent}</h1>
             </div>
         );
     }
 }
 CourseReviewContent.propTypes = {
-    courseName : PropTypes.string.isRequired
+    courseName : PropTypes.string.isRequired,
+    reviewContent : PropTypes.string
 };
 
 export default CourseReviewContent;

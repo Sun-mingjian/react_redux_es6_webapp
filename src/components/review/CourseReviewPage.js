@@ -8,16 +8,18 @@ import { bindActionCreators } from 'redux';
 class CourseReviewPage extends React.Component{
     constructor(props){
         super(props);
-        this.getCourseReview = this.getCourseReview.bind(this);
-        this.getCourseName = this.getCourseName.bind(this);
-
-    }
-
-
-    getThisCourseReview(props){
+        // this.getCourseReview = this.getCourseReview.bind(this);
+        // this.getThisCourseReview = this.getThisCourseReview.bind(this);
         let courseName = this.props.params.courseTitle;
         this.props.actions.getCourseReview(courseName);
+
     }
+
+
+    // getThisCourseReview(props){
+    //     let courseName = this.props.params.courseTitle;
+    //     return this.props.actions.getCourseReview(courseName);
+    // }
 
     getCourseName(props){
         return this.props.params.courseTitle;
@@ -26,14 +28,14 @@ class CourseReviewPage extends React.Component{
     render(props){
         return(
             <CourseReviewContent courseName = {this.getCourseName(props)} 
-            CourseReviewContent = {this.getThisCourseReview(props)}/> 
+            reviewContent = {this.props.review} /> 
         );
     }
 }
 
 function mapStateToProps(state, ownProps) {
     return {
-        courses: state.courses
+        review: state.review
     };
 }
 
