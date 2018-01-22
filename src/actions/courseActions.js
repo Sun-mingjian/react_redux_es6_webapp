@@ -13,3 +13,17 @@ export const deleteCourse = (courseIndex)=>{
         courseIndex
     };
 };
+
+export const addReview = (review)=>{
+    return {
+        type: types.ADD_REVIEW,
+        review
+    };
+};
+
+export const editReview = (review)=>{
+    return {
+        type: types.EDIT_REVIEW,
+        review
+    };
+};

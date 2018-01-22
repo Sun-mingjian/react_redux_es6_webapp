@@ -48,11 +48,6 @@ class CoursesPage extends React.Component{
 
         return (
             <div>
-                {courseSectionHeader}
-                {this.props.courses.map((course,i) => 
-                    <Course key={i} thisCourse={course} index={i} onDeleteCourse={this.handleDeleteCourse} />
-                )}
-
                 <h2>Please Add Courses</h2>
                 <input
                     type="text"
@@ -64,6 +59,11 @@ class CoursesPage extends React.Component{
                     value="Save"
                     onClick={this.onClickSave}
                 />
+
+                {courseSectionHeader}
+                {this.props.courses.map((course,i) => 
+                    <Course key={i} thisCourse={course} index={i} onDeleteCourse={this.handleDeleteCourse} />
+                )}
             </div>
         );
     }

@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import {Link} from 'react-router';
 
 class Course extends React.Component{
     constructor(){
@@ -17,7 +18,8 @@ class Course extends React.Component{
         const course = this.props.thisCourse;
         return (
             <div>
-                <span>{course.title}</span>
+                <span>{course.title}   </span>
+                <Link to={'/review/'+course.title} >Review</Link>
                 <button onClick={this.onDeleteCourse}>Delete</button>
             </div>
         );
