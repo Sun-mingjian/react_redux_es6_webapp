@@ -6,36 +6,32 @@ import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 class CourseReviewPage extends React.Component{
-    constructor(props){
-        super(props);
-        // this.getCourseReview = this.getCourseReview.bind(this);
-        // this.getThisCourseReview = this.getThisCourseReview.bind(this);
+    constructor(props,context){
+        super(props,context);
         let courseName = this.props.params.courseTitle;
         this.props.actions.getCourseReview(courseName);
 
     }
 
-
-    // getThisCourseReview(props){
-    //     let courseName = this.props.params.courseTitle;
-    //     return this.props.actions.getCourseReview(courseName);
-    // }
-
-    getCourseName(props){
-        return this.props.params.courseTitle;
-    }
-
     render(props){
+        const courseName = this.props.params.courseTitle;
         return(
-            <CourseReviewContent courseName = {this.getCourseName(props)} 
-            reviewContent = {this.props.review} /> 
+            <CourseReviewContent courseName = {courseName} 
+            reviewContent = {this.props.reviews[courseName]} /> 
         );
     }
 }
 
+CourseReviewPage.propTypes = {
+    reviews: PropTypes.object.isRequired,
+    params: PropTypes.object,
+    actions:PropTypes.object
+};
+
 function mapStateToProps(state, ownProps) {
+    console.info(state);
     return {
-        review: state.review
+        reviews: state.reviews
     };
 }
 
