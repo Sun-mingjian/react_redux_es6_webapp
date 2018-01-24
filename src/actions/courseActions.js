@@ -34,3 +34,11 @@ export const getCourseReview = (courseName) => {
         courseName
     };  
 };
+
+export const updateReview = (courseName,newReview) =>{
+    return {
+        type:types.UPDATE_REVIEW,
+        courseName,
+        newReview
+    };  
+};
