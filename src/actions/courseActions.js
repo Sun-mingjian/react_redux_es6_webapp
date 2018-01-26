@@ -14,6 +14,7 @@ export const deleteCourse = (courseIndex)=>{
     };
 };
 
+//should change later
 export const addReview = (review)=>{
     return {
         type: types.ADD_REVIEW,
