@@ -21,27 +21,34 @@ class CourseReviewContent extends React.Component{
     handleReviewContentChange(event){
         this.setState({reviewContent: event.target.value});
     }
+    handleDeleteReviews(){
+        if(confirm("Are you sure to delete the comments for this course?")){
+            this.props.onDelete();
+        }
+    }
     render(){
         let optionButton = null;
         let reviewInputSection = null;
         let saveReviewButton = null;
         let reviewText = null;
+        let deleteReviewButton = null;
         if(this.state.showTextArea){
             reviewInputSection=<textarea onChange={this.handleReviewContentChange.bind(this)} value={this.state.reviewContent}></textarea>;
             saveReviewButton= <button onClick={this.handleSaveReviews.bind(this)}>Save Reviews</button>;
         }else{
-            reviewText = <h1>{this.state.reviewContent}</h1>;
+            reviewText =<div><h1>{this.state.reviewContent}</h1></div>
             if(!this.props.reviewContent){
                 optionButton = <button onClick={this.handleAddReviews.bind(this)}>Add Reviews</button>;
             }else{
                 optionButton = <button onClick={this.handleAddReviews.bind(this)}>Edit Reviews</button>;
+                deleteReviewButton= <button onClick={this.handleDeleteReviews.bind(this)}>Delete Reviews</button>;                
             }
         }
         return(
             <div>
                 <h1>Course: {this.props.courseName}</h1>
                 {reviewText}
-                {optionButton}
+                {optionButton}{deleteReviewButton}
                 <br></br>
                 {reviewInputSection}
                 <br></br>
@@ -53,7 +60,8 @@ class CourseReviewContent extends React.Component{
 CourseReviewContent.propTypes = {
     courseName : PropTypes.string.isRequired,
     reviewContent : PropTypes.string,
-    onUpdate: PropTypes.func
+    onUpdate: PropTypes.func,
+    onDelete: PropTypes.func
 };
 
 export default CourseReviewContent;

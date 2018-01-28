@@ -15,11 +15,10 @@ export default function courseReviewReducer(state = defaultState, action){
             state[courseName] = action.newReview;
             return state;
             
-        case types.EDIT_REVIEW:
-            alert(types.EDIT_REVIEW);
-            return {
-                
-            };
+        case types.DELETE_REVIEW:
+            const thisCourseName = action.courseName;
+            state[thisCourseName] = "";
+            return {...state};
 
         default:
             return state;

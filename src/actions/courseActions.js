@@ -42,3 +42,10 @@ export const updateReview = (courseName,newReview) =>{
         newReview
     };  
 };
+
+export const deleteReview = (courseName) => {
+    return {
+        type:types.DELETE_REVIEW,
+        courseName
+    };  
+};

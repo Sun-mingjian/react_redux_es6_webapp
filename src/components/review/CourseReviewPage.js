@@ -13,14 +13,20 @@ class CourseReviewPage extends React.Component{
     }
     handleUpdateReview(reviewContents){
         const courseName = this.props.params.courseTitle;        
-        this.props.actions.updateReview(this.props.params.courseTitle,reviewContents);
+        this.props.actions.updateReview(courseName,reviewContents);
+    }
+    handleDeleteReview(){
+        const courseName = this.props.params.courseTitle;   
+        this.props.actions.deleteReview(courseName);
     }
     render(props){
         const courseName = this.props.params.courseTitle;
         return(
             <CourseReviewContent courseName = {courseName} 
             reviewContent = {this.props.reviews[courseName]} 
-            onUpdate = {this.handleUpdateReview.bind(this)}/> 
+            onUpdate = {this.handleUpdateReview.bind(this)}
+            onDelete = {this.handleDeleteReview.bind(this)} 
+        /> 
         );
     }
 }
